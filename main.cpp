@@ -8,10 +8,13 @@ public:
     Test(int _x, char* _text) : x(_x)/*, text(_text)*/{
         text = copyString(_text);
     };
-    Test(const Test& rhs) : x(rhs.x), text(rhs.text){};
+    Test(const Test& rhs) : x(rhs.x) {
+        text = copyString(rhs.text);
+    };
 
     Test& operator=(const Test& rhs) {
         x = rhs.x;
+        delete[] text; // Speicher Lack zu vermeinden
         text = copyString(rhs.text);
         return *this;
     };
